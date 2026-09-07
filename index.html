@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free House Clearance | Canvey Island — House &amp; Property Clearance</title>
 <meta name="description" content="Free House Clearance — professional house, probate and property clearance in Canvey Island and South Essex. 5.0★ rated, available 24 hours, respectful and reliable.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a2432'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23d9ab55' text-anchor='middle'%3EFHC%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Free House Clearance | Canvey Island">
+<meta property="og:description" content="Professional house, probate and property clearance in Canvey Island and South Essex. 5.0★ rated, available 24 hours.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 
 <!--
   COMPETITOR & INDUSTRY RESEARCH SUMMARY (Step 1 of build process)
@@ -440,12 +445,14 @@
           <div class="qi-row">📍 <b>15 Central Wall Rd, Canvey Island SS8 9UU</b></div>
           <div class="qi-row">🕐 <b>Open 24 Hours</b></div>
         </div>
-        <form class="quote-form">
-          <div class="field"><label>Name</label><input type="text" placeholder="Your name" required></div>
-          <div class="field"><label>Phone Number</label><input type="tel" placeholder="Your phone number" required></div>
+        <form class="quote-form" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="company" id="quote-form">
+          <input type="hidden" name="form-name" value="quote-request">
+          <p style="position:absolute;left:-9999px;" aria-hidden="true"><label>Don't fill this out if you're human: <input name="company" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
+          <div class="field"><label>Phone Number</label><input type="tel" name="phone" placeholder="Your phone number" required></div>
           <div class="field">
             <label>Service Needed</label>
-            <select>
+            <select name="service">
               <option>Full House Clearance</option>
               <option>Probate / Bereavement Clearance</option>
               <option>Hoarder / Deep Clearance</option>
@@ -454,8 +461,9 @@
               <option>Single Item Collection</option>
             </select>
           </div>
-          <div class="field"><label>Message</label><textarea rows="4" placeholder="Briefly describe the property and what needs clearing"></textarea></div>
+          <div class="field"><label>Message</label><textarea rows="4" name="message" placeholder="Briefly describe the property and what needs clearing"></textarea></div>
           <button type="submit">Send Enquiry →</button>
+          <div id="quote-form-status" style="display:none;margin-top:14px;padding:12px 14px;border-radius:4px;font-size:13.5px;font-weight:600;"></div>
         </form>
       </div>
     </div>
@@ -517,6 +525,37 @@
           mobileNav.classList.remove('mobile-open');
           menuToggle.setAttribute('aria-expanded', 'false');
         });
+      });
+    }
+
+    var quoteForm = document.getElementById('quote-form');
+    if(quoteForm){
+      quoteForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        var statusEl = document.getElementById('quote-form-status');
+        var btn = quoteForm.querySelector('button[type="submit"]');
+        var originalBtnText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        var data = new FormData(quoteForm);
+        fetch('/', { method: 'POST', body: new URLSearchParams(data).toString(), headers: {'Content-Type':'application/x-www-form-urlencoded'} })
+          .then(function(){
+            statusEl.style.display = 'block';
+            statusEl.style.background = '#eef4ef';
+            statusEl.style.color = '#3f6b4a';
+            statusEl.textContent = "Thanks — we've got your enquiry and will be in touch shortly.";
+            quoteForm.reset();
+            btn.textContent = originalBtnText;
+            btn.disabled = false;
+          })
+          .catch(function(){
+            statusEl.style.display = 'block';
+            statusEl.style.background = '#fbeaea';
+            statusEl.style.color = '#a13a3a';
+            statusEl.textContent = "Something went wrong sending that — please call 07719 005068 instead.";
+            btn.textContent = originalBtnText;
+            btn.disabled = false;
+          });
       });
     }
 
