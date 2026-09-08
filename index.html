@@ -216,14 +216,26 @@
   @media (max-width:860px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:560px){ .gallery-grid{grid-template-columns:1fr;} }
   .gallery-pair{background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 8px 24px rgba(20,23,28,0.05);}
-  .gallery-imgs{display:grid;grid-template-columns:1fr 1fr;}
-  .gallery-img{aspect-ratio:1/1;position:relative;overflow:hidden;background:linear-gradient(145deg,#f3ede0,#fbf9f4);display:flex;align-items:center;justify-content:center;}
-  .gallery-img img{width:100%;height:100%;object-fit:cover;display:block;}
-  .gallery-img .tag{position:absolute;top:8px;left:8px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;padding:3px 9px;border-radius:20px;color:#fff;z-index:2;}
-  .gallery-img.before .tag{background:var(--muted);}
-  .gallery-img.after .tag{background:var(--brass);}
-  .gallery-placeholder-icon{font-size:30px;opacity:0.3;}
   .gallery-caption{padding:13px 16px;font-size:12.5px;color:var(--muted);font-weight:600;border-top:1px solid var(--line);}
+
+  /* Before/after drag slider */
+  .ba-slider-inner{position:relative;aspect-ratio:1/1;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:pan-y;}
+  .ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;}
+  .ba-before-wrap{position:absolute;inset:0;overflow:hidden;clip-path:inset(0 50% 0 0);will-change:clip-path;}
+  .ba-before-wrap .ba-img{position:absolute;}
+  .ba-handle{
+    position:absolute;top:0;bottom:0;left:50%;width:3px;background:rgba(255,255,255,0.9);
+    transform:translateX(-50%);cursor:ew-resize;z-index:5;box-shadow:0 0 8px rgba(0,0,0,0.35);
+  }
+  .ba-handle::before{
+    content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.35);
+  }
+  .ba-handle-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;color:var(--ink);z-index:2;font-weight:700;}
+  .ba-handle:focus-visible::before{outline:2px solid var(--brass);outline-offset:2px;}
+  .ba-tag-before, .ba-tag-after{position:absolute;top:8px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;padding:3px 9px;border-radius:20px;color:#fff;z-index:4;pointer-events:none;}
+  .ba-tag-before{left:8px;background:var(--muted);}
+  .ba-tag-after{right:8px;background:var(--brass);}
   .gallery-more{margin-top:36px;}
   .gallery-more-head{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:16px;}
   .gallery-single-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
@@ -403,18 +415,36 @@
       </div>
       <div class="gallery-grid">
         <div class="gallery-pair reveal">
-          <div class="gallery-imgs">
-            <div class="gallery-img before"><span class="tag">Before</span><img src="images/before-shed-1.jpg" alt="Cluttered garage workshop before clearance" loading="lazy"></div>
-            <div class="gallery-img after"><span class="tag">After</span><img src="images/after-shed-1.jpg" alt="Cleared garage workshop after clearance" loading="lazy"></div>
+          <div class="ba-slider" data-before="images/before-shed-1.jpg" data-after="images/after-shed-1.jpg">
+            <div class="ba-slider-inner">
+              <img class="ba-img ba-after" src="images/after-shed-1.jpg" alt="Cleared garage workshop after clearance" loading="lazy">
+              <div class="ba-before-wrap">
+                <img class="ba-img ba-before" src="images/before-shed-1.jpg" alt="Cluttered garage workshop before clearance" loading="lazy">
+              </div>
+              <div class="ba-handle" role="slider" aria-label="Drag to compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+                <span class="ba-handle-icon">↔</span>
+              </div>
+              <span class="tag ba-tag-before">Before</span>
+              <span class="tag ba-tag-after">After</span>
+            </div>
           </div>
-          <div class="gallery-caption">Garage workshop clearance</div>
+          <div class="gallery-caption">Garage workshop clearance — drag to compare</div>
         </div>
         <div class="gallery-pair reveal">
-          <div class="gallery-imgs">
-            <div class="gallery-img before"><span class="tag">Before</span><img src="images/before-store-1.jpg" alt="Cluttered store room before clearance" loading="lazy"></div>
-            <div class="gallery-img after"><span class="tag">After</span><img src="images/after-store-1.jpg" alt="Cleared store room after clearance" loading="lazy"></div>
+          <div class="ba-slider" data-before="images/before-store-1.jpg" data-after="images/after-store-1.jpg">
+            <div class="ba-slider-inner">
+              <img class="ba-img ba-after" src="images/after-store-1.jpg" alt="Cleared store room after clearance" loading="lazy">
+              <div class="ba-before-wrap">
+                <img class="ba-img ba-before" src="images/before-store-1.jpg" alt="Cluttered store room before clearance" loading="lazy">
+              </div>
+              <div class="ba-handle" role="slider" aria-label="Drag to compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+                <span class="ba-handle-icon">↔</span>
+              </div>
+              <span class="tag ba-tag-before">Before</span>
+              <span class="tag ba-tag-after">After</span>
+            </div>
           </div>
-          <div class="gallery-caption">Store room clearance</div>
+          <div class="gallery-caption">Store room clearance — drag to compare</div>
         </div>
       </div>
 
@@ -642,6 +672,53 @@
     } else {
       els.forEach(function(el){ el.classList.add('in-view'); });
     }
+
+    // Before/after drag sliders
+    document.querySelectorAll('.ba-slider-inner').forEach(function(slider){
+      var beforeWrap = slider.querySelector('.ba-before-wrap');
+      var handle = slider.querySelector('.ba-handle');
+      var dragging = false;
+
+      function setPos(pct){
+        pct = Math.max(0, Math.min(100, pct));
+        beforeWrap.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+        handle.style.left = pct + '%';
+        handle.setAttribute('aria-valuenow', Math.round(pct));
+      }
+
+      function pctFromClientX(clientX){
+        var rect = slider.getBoundingClientRect();
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      function onPointerDown(e){
+        dragging = true;
+        slider.setPointerCapture && e.pointerId != null && slider.setPointerCapture(e.pointerId);
+        setPos(pctFromClientX(e.clientX));
+        e.preventDefault();
+      }
+      function onPointerMove(e){
+        if(!dragging) return;
+        setPos(pctFromClientX(e.clientX));
+      }
+      function onPointerUp(){
+        dragging = false;
+      }
+
+      slider.addEventListener('pointerdown', onPointerDown);
+      slider.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', onPointerUp);
+
+      handle.addEventListener('keydown', function(e){
+        var current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
+        if(e.key === 'ArrowLeft'){ setPos(current - 5); e.preventDefault(); }
+        if(e.key === 'ArrowRight'){ setPos(current + 5); e.preventDefault(); }
+        if(e.key === 'Home'){ setPos(0); e.preventDefault(); }
+        if(e.key === 'End'){ setPos(100); e.preventDefault(); }
+      });
+
+      setPos(50);
+    });
   </script>
 
 </body>
