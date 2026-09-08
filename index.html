@@ -224,6 +224,15 @@
   .gallery-img.after .tag{background:var(--brass);}
   .gallery-placeholder-icon{font-size:30px;opacity:0.3;}
   .gallery-caption{padding:13px 16px;font-size:12.5px;color:var(--muted);font-weight:600;border-top:1px solid var(--line);}
+  .gallery-more{margin-top:36px;}
+  .gallery-more-head{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:16px;}
+  .gallery-single-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media (max-width:860px){ .gallery-single-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:560px){ .gallery-single-grid{grid-template-columns:repeat(2,1fr);} }
+  .gallery-single{position:relative;aspect-ratio:1/1;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:var(--paper);}
+  .gallery-single img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery-single .tag{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;padding:3px 8px;border-radius:20px;color:#fff;background:var(--brass);z-index:2;}
+  .gallery-single .tag.before{background:var(--muted);}
 
   /* Why us */
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
@@ -390,36 +399,41 @@
       <div class="section-head reveal">
         <span class="eyebrow">See The Difference</span>
         <h2>Before &amp; After</h2>
-        <p>Real jobs, real results — photo placeholders below, ready to swap for your actual before/after shots.</p>
+        <p>Real jobs, real results — photos from clearances we've actually completed.</p>
       </div>
       <div class="gallery-grid">
-        <!--
-          HOW TO ADD REAL PHOTOS: replace the two <div class="gallery-img ..."> lines in each
-          .gallery-pair below with, e.g.:
-            <div class="gallery-img before"><span class="tag">Before</span><img src="images/before-1.jpg" alt="Before clearance" loading="lazy"></div>
-            <div class="gallery-img after"><span class="tag">After</span><img src="images/after-1.jpg" alt="After clearance" loading="lazy"></div>
-          Save the actual image files into an "images" folder next to this index.html.
-        -->
         <div class="gallery-pair reveal">
           <div class="gallery-imgs">
-            <div class="gallery-img before"><span class="tag">Before</span><span class="gallery-placeholder-icon">🗄️</span></div>
-            <div class="gallery-img after"><span class="tag">After</span><span class="gallery-placeholder-icon">✨</span></div>
+            <div class="gallery-img before"><span class="tag">Before</span><img src="images/before-shed-1.jpg" alt="Cluttered garage workshop before clearance" loading="lazy"></div>
+            <div class="gallery-img after"><span class="tag">After</span><img src="images/after-shed-1.jpg" alt="Cleared garage workshop after clearance" loading="lazy"></div>
           </div>
-          <div class="gallery-caption">Photo coming soon</div>
+          <div class="gallery-caption">Garage workshop clearance</div>
         </div>
         <div class="gallery-pair reveal">
           <div class="gallery-imgs">
-            <div class="gallery-img before"><span class="tag">Before</span><span class="gallery-placeholder-icon">🗄️</span></div>
-            <div class="gallery-img after"><span class="tag">After</span><span class="gallery-placeholder-icon">✨</span></div>
+            <div class="gallery-img before"><span class="tag">Before</span><img src="images/before-store-1.jpg" alt="Cluttered store room before clearance" loading="lazy"></div>
+            <div class="gallery-img after"><span class="tag">After</span><img src="images/after-store-1.jpg" alt="Cleared store room after clearance" loading="lazy"></div>
           </div>
-          <div class="gallery-caption">Photo coming soon</div>
+          <div class="gallery-caption">Store room clearance</div>
         </div>
-        <div class="gallery-pair reveal">
-          <div class="gallery-imgs">
-            <div class="gallery-img before"><span class="tag">Before</span><span class="gallery-placeholder-icon">🗄️</span></div>
-            <div class="gallery-img after"><span class="tag">After</span><span class="gallery-placeholder-icon">✨</span></div>
-          </div>
-          <div class="gallery-caption">Photo coming soon</div>
+      </div>
+
+      <div class="gallery-more">
+        <div class="gallery-more-head reveal">More from recent jobs</div>
+        <div class="gallery-single-grid">
+          <div class="gallery-single reveal"><span class="tag before">Before</span><img src="images/before-yard-1.jpg" alt="Cluttered side yard before clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-kitchen-1.jpg" alt="Cleared kitchen after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-kitchen-2.jpg" alt="Cleared kitchen after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-room-1.jpg" alt="Cleared room after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-livingroom-1.jpg" alt="Cleared living room after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-livingroom-2.jpg" alt="Cleared living room after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-livingroom-3.jpg" alt="Cleared living room after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-bedroom-1.jpg" alt="Cleared bedroom after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-wardrobe-1.jpg" alt="Cleared wardrobe after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-wardrobe-2.jpg" alt="Cleared wardrobe after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-shed-2.jpg" alt="Cleared shed after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-shed-3.jpg" alt="Cleared shed after clearance" loading="lazy"></div>
+          <div class="gallery-single reveal"><span class="tag">After</span><img src="images/after-shed-4.jpg" alt="Cleared shed after clearance" loading="lazy"></div>
         </div>
       </div>
     </div>
