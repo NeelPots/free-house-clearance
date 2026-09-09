@@ -634,6 +634,7 @@
         <span>Southend-on-Sea</span>
         <span>Rayleigh</span>
       </div>
+      <p class="reveal" style="margin-top:18px;font-size:14px;color:var(--muted);">Don't see your area listed? We consider other locations too — leave us an enquiry below and we'll let you know.</p>
     </div>
   </section>
 
@@ -648,7 +649,7 @@
           <div class="qi-row">📍 <b>15 Central Wall Rd, Canvey Island SS8 9UU</b></div>
           <div class="qi-row">🕐 <b>Open 24 Hours</b></div>
         </div>
-        <form class="quote-form" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="company" id="quote-form">
+        <form class="quote-form" name="quote-request" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="company" id="quote-form">
           <input type="hidden" name="form-name" value="quote-request">
           <p style="position:absolute;left:-9999px;" aria-hidden="true"><label>Don't fill this out if you're human: <input name="company" tabindex="-1" autocomplete="off"></label></p>
           <div class="field"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
@@ -665,6 +666,7 @@
             </select>
           </div>
           <div class="field"><label>Message</label><textarea rows="4" name="message" placeholder="Briefly describe the property and what needs clearing"></textarea></div>
+          <div class="field"><label>Photos (optional)</label><input type="file" name="photos" accept="image/*" multiple></div>
           <button type="submit">Send Enquiry →</button>
           <div id="quote-form-status" style="display:none;margin-top:14px;padding:12px 14px;border-radius:4px;font-size:13.5px;font-weight:600;"></div>
         </form>
@@ -741,7 +743,7 @@
         btn.disabled = true;
         btn.textContent = 'Sending...';
         var data = new FormData(quoteForm);
-        fetch('/', { method: 'POST', body: new URLSearchParams(data).toString(), headers: {'Content-Type':'application/x-www-form-urlencoded'} })
+        fetch('/', { method: 'POST', body: data })
           .then(function(){
             statusEl.style.display = 'block';
             statusEl.style.background = '#eef4ef';
