@@ -100,10 +100,7 @@
   .logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0;min-width:0;}
   .logo .mark{
     width:42px;height:42px;flex-shrink:0;border-radius:2px;
-    background:var(--navy);color:var(--brass-light);
-    display:flex;align-items:center;justify-content:center;
-    font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:0.5px;
-    border:1px solid var(--brass);
+    border:1px solid var(--brass);object-fit:cover;display:block;
   }
   .logo .name{font-weight:700;font-size:17px;color:var(--text);letter-spacing:-0.2px;line-height:1.15;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:"Fraunces",serif;}
@@ -148,7 +145,7 @@
   @media (max-width:480px){
     header.main .wrap{padding:10px 16px;gap:8px;}
     .logo{gap:8px;}
-    .logo .mark{width:34px;height:34px;font-size:12px;}
+    .logo .mark{width:34px;height:34px;}
     .logo .name{font-size:14px;}
     .cta-quote{font-size:12px;padding:9px 12px;gap:5px;}
   }
@@ -437,7 +434,7 @@
   <header class="main">
     <div class="wrap">
       <a href="#top" class="logo">
-        <span class="mark">FHC</span>
+        <img class="mark" src="images/logo-icon.png" alt="Free House Clearance logo">
         <span class="name">Free House Clearance<small>Canvey Island · House Clearance</small></span>
       </a>
       <nav class="links" id="mobile-nav">
