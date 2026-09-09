@@ -279,6 +279,14 @@
     display:inline-block;background:#eef4ef;color:var(--green);font-size:11px;font-weight:700;
     padding:3px 9px;border-radius:20px;margin-top:12px;
   }
+  .review-cta{text-align:center;margin-top:34px;}
+  .review-cta .btn-review{
+    display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;
+    padding:14px 26px;font-weight:700;font-size:14.5px;text-decoration:none;border-radius:3px;
+    transition:background .2s,transform .15s;
+  }
+  .review-cta .btn-review:hover{background:var(--brass-dark);transform:translateY(-1px);}
+  .review-cta p{font-size:12.5px;color:var(--muted);margin:12px 0 0;}
 
   /* Service area */
   .area-list{display:flex;flex-wrap:wrap;gap:10px;}
@@ -389,7 +397,7 @@
     "@type": "AggregateRating",
     "ratingValue": "5.0",
     "bestRating": "5",
-    "reviewCount": "5"
+    "reviewCount": "4"
   },
   "review": [
     {
@@ -418,7 +426,7 @@
 
   <div class="topbar">
     <div class="wrap">
-      <div class="rating"><b>★ 5.0</b>&nbsp; Google Rating · 5 reviews</div>
+      <div class="rating"><b>★ 5.0</b>&nbsp; Google Rating · 4 reviews</div>
       <div><a href="tel:+447719005068">07719 005068</a> &middot; Open 24 Hours &middot; Canvey Island</div>
     </div>
   </div>
@@ -602,6 +610,10 @@
           <div class="meta">5 Google reviews</div>
           <span class="badge-verified">✓ Verified Google Review</span>
         </div>
+      </div>
+      <div class="review-cta reveal">
+        <a href="https://www.google.com/maps?cid=7939826467760449396" target="_blank" rel="noopener noreferrer" class="btn-review">⭐ Leave Us a Review</a>
+        <p>Had a good experience? A quick Google review helps us more than you'd think.</p>
       </div>
     </div>
   </section>
