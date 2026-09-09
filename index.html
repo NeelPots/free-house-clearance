@@ -425,6 +425,7 @@
   ]
 }
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -677,6 +678,7 @@
             <input type="file" name="photos" accept="image/*" multiple id="quote-photos">
             <div id="quote-photos-note" style="font-size:12px;color:var(--muted);margin-top:6px;"></div>
           </div>
+          <div class="field" data-netlify-recaptcha="true"></div>
           <button type="submit">Send Enquiry →</button>
           <div id="quote-form-status" style="display:none;margin-top:14px;padding:12px 14px;border-radius:4px;font-size:13.5px;font-weight:600;"></div>
         </form>
@@ -811,6 +813,14 @@
         var btn = quoteForm.querySelector('button[type="submit"]');
         var originalBtnText = btn.textContent;
 
+        if(typeof grecaptcha !== 'undefined' && grecaptcha.getResponse().length === 0){
+          statusEl.style.display = 'block';
+          statusEl.style.background = '#fbeaea';
+          statusEl.style.color = '#a13a3a';
+          statusEl.textContent = "Please tick the \"I'm not a robot\" box above before sending.";
+          return;
+        }
+
         var data = new FormData(quoteForm);
         var totalSize = 0;
         data.forEach(function(v){ if(v instanceof File) totalSize += v.size; });
@@ -845,6 +855,7 @@
             statusEl.textContent = "That didn't send — this can happen with large photo attachments. Please remove a photo or two and try again, or call 07719 005068 instead.";
             btn.textContent = originalBtnText;
             btn.disabled = false;
+            if(typeof grecaptcha !== 'undefined'){ grecaptcha.reset(); }
           });
       });
     }
