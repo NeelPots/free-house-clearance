@@ -105,13 +105,13 @@
   /* ---------- Header ---------- */
   header.main{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
   header.main .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:16px;}
-  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0;min-width:0;}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:0;}
   .logo .mark{
     width:42px;height:42px;flex-shrink:0;border-radius:2px;
     border:1px solid var(--brass);object-fit:cover;display:block;
   }
   .logo .name{font-weight:700;font-size:17px;color:var(--text);letter-spacing:-0.2px;line-height:1.15;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:"Fraunces",serif;}
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:"Fraunces",serif;min-width:0;}
   .logo .name small{display:block;font-weight:600;font-size:10px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;font-family:"Inter",sans-serif;margin-top:2px;}
 
   nav.links{display:flex;gap:26px;font-size:14px;font-weight:600;}
@@ -300,8 +300,9 @@
   .area-list span{background:var(--paper);border:1px solid var(--line);padding:9px 16px;font-size:13.5px;font-weight:700;color:var(--text);border-radius:20px;}
 
   /* Quote form */
-  .quote-wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:0;background:var(--navy);color:#fff;border-radius:6px;overflow:hidden;}
+  .quote-wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:0;background:var(--navy);color:#fff;border-radius:6px;overflow:hidden;max-width:100%;}
   @media (max-width:900px){ .quote-wrap{grid-template-columns:1fr;} }
+  .quote-info,.quote-form{min-width:0;}
   .quote-info{padding:48px 44px;}
   .quote-info h2{font-size:27px;margin:0 0 14px;font-weight:600;}
   .quote-info p{color:#b7bfc9;font-size:14.5px;margin:0 0 22px;}
@@ -309,7 +310,7 @@
   .quote-info .qi-row b{color:#fff;}
   .quote-form{background:var(--paper);color:var(--text);padding:44px;}
   .quote-form label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--muted);margin-bottom:6px;}
-  .quote-form .field{margin-bottom:16px;}
+  .quote-form .field{margin-bottom:16px;max-width:100%;}
   .quote-form input, .quote-form select, .quote-form textarea{
     width:100%;border:1px solid var(--line);padding:12px 14px;font-size:14.5px;font-family:inherit;background:#faf8f3;border-radius:3px;
   }
@@ -318,6 +319,13 @@
     width:100%;background:var(--brass);color:#1a1204;border:none;padding:14px;font-weight:700;font-size:15px;cursor:pointer;margin-top:6px;border-radius:3px;transition:background .2s;
   }
   .quote-form button:hover{background:var(--brass-light);}
+  /* The reCAPTCHA widget Netlify injects is a ~304px-wide iframe that doesn't reflow —
+     without this, on narrow phones it forces the whole grid track wider than the
+     viewport, pushing the form off-centre and clipping its right edge. */
+  .quote-form .field[data-netlify-recaptcha]{overflow-x:auto;overflow-y:hidden;}
+  @media (max-width:560px){
+    .quote-info,.quote-form{padding:28px 22px;}
+  }
 
   /* Sticky mobile call bar */
   .sticky-call{display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--ink);border-top:1px solid var(--navy-line);}
